@@ -6,6 +6,105 @@
     <title>Document</title>
 </head>
 <body>
-    <script></script>
+    <script>
+        let humanScore = 0;
+        let computerScore = 0;
+        let rounds = 0;
+
+        function getComputerChoice () {
+            let random = Math.floor(Math.random() * 3) + 1;
+            switch (random) {
+                case 1 : return "ROCK";
+                break;
+                case 2 : return "PAPER";
+                break;
+                case 3 : return "SCISSORS";
+                break;
+            }
+        }
+
+        function getHumanChoice () {                                                                         
+            let choice = prompt("Rock, Paper or Scissors", "");
+            return choice.toUpperCase();
+        }
+
+        function getWinner() {    //declares fineal score
+            if (humanScore < computerScore) {console.log(`You lost this game with your score being:${humanScore} and the computer's score being ${computerScore}.`)}
+            else if ( humanScore > computerScore) {console.log(`You won this game with your score being:${humanScore} and the computer's score being ${computerScore}.`)}
+            else {console.log("It's a darw, no one won.")}
+
+            humanScore = 0;
+            computerScore = 0;
+        }
+
+
+        function playRound(humanChoice, computerChoice) {       //this function sets the logic for who wins and who losses and then add changes to the winner's score
+            if (humanChoice === computerChoice) {
+                        console.log("It's a draw!!");
+                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
+            } else if (humanChoice === "ROCK") {
+                switch (computerChoice) {
+                    case "PAPER" : 
+                        console.log("You lose! Paper beats Rock.");
+                        computerScore++;
+                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
+                    break;
+                    case "SCISSORS" : 
+                        console.log("You win! Rock beats Scissors.");
+                        humanScore++;
+                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
+                    break;
+                }    
+            } else if (humanChoice === "PAPER") {
+                switch (computerChoice) {
+                    case "ROCK" : 
+                        console.log("You win! Paper beats Rock.");
+                        humanScore++;
+                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
+                    break;
+                    case "SCISSORS" : 
+                        console.log("You lose! Rock beats Scissors.");
+                        computerScore++;
+                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
+                    break;
+                }            
+            } else if (humanChoice === "SCISSORS") {
+                switch (computerChoice) {
+                    case "ROCK" : 
+                        console.log("You lose! Rock beats Scissors.");
+                        computerScore++;
+                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
+                    break;
+                    case "PAPER" : 
+                        console.log("You win! Scissors beats Paper.");
+                        humanScore++;
+                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
+                    break;
+                } 
+            } else { console.log("Error")}
+        }
+
+
+
+        function playGame() {
+        
+            for (let i = 0; i < 5; i++) {            //having a loop here to play five rounds and finally declare a winner with getWinner().
+                const humanSelection = getHumanChoice();
+                const computerSelection = getComputerChoice();
+
+                playRound(humanSelection, computerSelection)
+                rounds++;
+            }
+
+
+        
+            getWinner();
+           // playGame(); activate this if you want an endless gameplay
+
+        }
+
+        playGame();       
+
+    </script>
 </body>
 </html>
