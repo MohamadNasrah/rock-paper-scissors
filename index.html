@@ -47,12 +47,10 @@
                     case "PAPER" : 
                         console.log("You lose! Paper beats Rock.");
                         computerScore++;
-                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
                     break;
                     case "SCISSORS" : 
                         console.log("You win! Rock beats Scissors.");
                         humanScore++;
-                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
                     break;
                 }    
             } else if (humanChoice === "PAPER") {
@@ -60,12 +58,10 @@
                     case "ROCK" : 
                         console.log("You win! Paper beats Rock.");
                         humanScore++;
-                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
                     break;
                     case "SCISSORS" : 
                         console.log("You lose! Rock beats Scissors.");
                         computerScore++;
-                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
                     break;
                 }            
             } else if (humanChoice === "SCISSORS") {
@@ -73,12 +69,10 @@
                     case "ROCK" : 
                         console.log("You lose! Rock beats Scissors.");
                         computerScore++;
-                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
                     break;
                     case "PAPER" : 
                         console.log("You win! Scissors beats Paper.");
                         humanScore++;
-                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
                     break;
                 } 
             } else { console.log("Error")}
