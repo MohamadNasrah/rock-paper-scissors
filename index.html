@@ -6,10 +6,28 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+        <button class="rock">ROCK!</button>
+        <button class="paper">PAPER!</button>
+        <button class="scissors">SCISSORS!</button>
+    </div>
+    <divc class="scores"></div>
     <script>
+        const rock = document.querySelector(".rock");
+        const paper = document.querySelector(".paper");
+        const scissors = document.querySelector(".scissors");
+        const scores = document.querySelector(".scores");
+
+
         let humanScore = 0;
         let computerScore = 0;
-        let rounds = 0;
+
+        rock.addEventListener("click", () => {playGame("ROCK")});
+        paper.addEventListener("click", () => {playGame("PAPER")});
+        scissors.addEventListener("click", () => {playGame("SCISSORS")});
+
+
+
 
         function getComputerChoice () {
             let random = Math.floor(Math.random() * 3) + 1;
@@ -22,57 +40,51 @@
                 break;
             }
         }
-
-        function getHumanChoice () {                                                                         
-            let choice = prompt("Rock, Paper or Scissors", "");
-            return choice.toUpperCase();
+/*      this function is disabled when adding buttons to the ui because it returns an undefine value due to how this program is structured
+        function getHumanChoice (choice) {                                                                         
+           return choice;
         }
-
-        function getWinner() {    //declares fineal score
-            if (humanScore < computerScore) {console.log(`You lost this game with your score being:${humanScore} and the computer's score being ${computerScore}.`)}
-            else if ( humanScore > computerScore) {console.log(`You won this game with your score being:${humanScore} and the computer's score being ${computerScore}.`)}
-            else {console.log("It's a darw, no one won.")}
-
-            humanScore = 0;
-            computerScore = 0;
+*/
+        function getWinner() {    //declares final score
+            if (humanScore == 5) {scores.textContent = `You won this game with your score being:${humanScore} and the my score being ${computerScore}.`; reset()}
+            else if (computerScore == 5) {scores.textContent = `You lost this game with your score being:${humanScore} and the my score being ${computerScore}.`; reset()}
         }
 
 
         function playRound(humanChoice, computerChoice) {       //this function sets the logic for who wins and who losses and then add changes to the winner's score
             if (humanChoice === computerChoice) {
-                        console.log("It's a draw!!");
-                        console.log(`Your score is ${humanScore}, the computer's score is ${computerScore}`);
+                        scores.textContent = `A Draw! You chose ${humanChoice}, while i chose ${computerChoice}. Your Score: ${humanScore}. My Score: ${computerScore}`;
             } else if (humanChoice === "ROCK") {
                 switch (computerChoice) {
                     case "PAPER" : 
-                        console.log("You lose! Paper beats Rock.");
-                        computerScore++;
+                        computerScore++
+                        scores.textContent = `A Lose! You chose ${humanChoice}, while i chose ${computerChoice}. Your Score: ${humanScore}. My Score: ${computerScore}`;
                     break;
                     case "SCISSORS" : 
-                        console.log("You win! Rock beats Scissors.");
-                        humanScore++;
+                        humanScore++
+                        scores.textContent = `A Win! You chose ${humanChoice}, while i chose ${computerChoice}. Your Score: ${humanScore}. My Score: ${computerScore}`;
                     break;
                 }    
             } else if (humanChoice === "PAPER") {
                 switch (computerChoice) {
                     case "ROCK" : 
-                        console.log("You win! Paper beats Rock.");
-                        humanScore++;
+                        humanScore++
+                        scores.textContent = `A Win! You chose ${humanChoice}, while i chose ${computerChoice}. Your Score: ${humanScore}. My Score: ${computerScore}`;
                     break;
                     case "SCISSORS" : 
-                        console.log("You lose! Rock beats Scissors.");
-                        computerScore++;
+                        computerScore++
+                        scores.textContent = `A Lose! You chose ${humanChoice}, while i chose ${computerChoice}. Your Score: ${humanScore}. My Score: ${computerScore}`;
                     break;
                 }            
             } else if (humanChoice === "SCISSORS") {
                 switch (computerChoice) {
                     case "ROCK" : 
-                        console.log("You lose! Rock beats Scissors.");
-                        computerScore++;
+                        computerScore++
+                        scores.textContent = `A Lose! You chose ${humanChoice}, while i chose ${computerChoice}. Your Score: ${humanScore}. My Score: ${computerScore}`;
                     break;
                     case "PAPER" : 
-                        console.log("You win! Scissors beats Paper.");
-                        humanScore++;
+                        humanScore++
+                        scores.textContent = `A Win! You chose ${humanChoice}, while i chose ${computerChoice}. Your Score: ${humanScore}. My Score: ${computerScore}`;
                     break;
                 } 
             } else { console.log("Error")}
@@ -80,24 +92,23 @@
 
 
 
-        function playGame() {
-        
-            for (let i = 0; i < 5; i++) {            //having a loop here to play five rounds and finally declare a winner with getWinner().
-                const humanSelection = getHumanChoice();
-                const computerSelection = getComputerChoice();
+        function playGame(humanChoice) {
+            const computerSelection = getComputerChoice();
+            const humanSelection = humanChoice;
 
-                playRound(humanSelection, computerSelection)
-                rounds++;
-            }
-
-
+            playRound(humanSelection, computerSelection)
         
             getWinner();
            // playGame(); activate this if you want an endless gameplay
 
         }
 
-        playGame();       
+        function reset() {
+            humanScore = 0;
+            computerScore = 0;
+        }
+
+      
 
     </script>
 </body>
